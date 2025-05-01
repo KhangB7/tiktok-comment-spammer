@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Spam Bình Luận TikTok</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #444;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #ff3b5c;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e62e4d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Spam Bình Luận TikTok 🚀</h2>
+    <label>Link video TikTok:</label>
+    <input type="text" id="videoLink" placeholder="https://www.tiktok.com/...">
+
+    <label>Danh sách bình luận (mỗi dòng 1 bình luận):</label>
+    <textarea id="comments" rows="6" placeholder="Hello!\nNice video!\nFollow me back?"></textarea>
+
+    <label>Số lượng bình luận muốn gửi:</label>
+    <input type="number" id="count" value="5" min="1">
+
+    <button onclick="startSpam()">Bắt đầu gửi</button>
+
+    <div id="log" style="margin-top: 20px;"></div>
+  </div>
+
+  <script>
+    function startSpam() {
+      const link = document.getElementById('videoLink').value;
+      const comments = document.getElementById('comments').value.trim().split('\n');
+      const count = parseInt(document.getElementById('count').value);
+      const log = document.getElementById('log');
+      log.innerHTML = '';
+
+      if (!link || comments.length === 0 || isNaN(count)) {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+      }
+
+      for (let i = 0; i < count; i++) {
+        const msg = comments[i % comments.length];
+        log.innerHTML += `<div>▶️ Gửi bình luận: <strong>${msg}</strong> vào video ${link}</div>`;
+      }
+    }
+  </script>
+</body>
+</html>
